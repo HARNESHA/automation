@@ -1,22 +1,21 @@
 #!/bin/bash
 
-echo "installing java....."
+echo "installing java....." && \
 
 sudo yum update -y && \
-sudo yum install openjdk-11-jre -y && \
+sudo amazon-linux-extras install java-openjdk11 -y && \
 java -version && \
 
-echo "java instolation is completed....."
+echo "java instolation is completed....." && \
 
-echo "jenkins installing....."
+echo "jenkins installing....."&& \
 
-curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee \
-  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
-echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
-  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
-  /etc/yum/sources.list.d/jenkins.list > /dev/null
-sudo yum-get update -y && \
-sudo yum-get install jenkins -y && \
+sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo && \
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key && \
+sudo yum update -y && \
+sudo yum upgrade -y && \
+sudo yum install jenkins -y && \
 
 echo "enabling jenkins at every boot time...."
 
