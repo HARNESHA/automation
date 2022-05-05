@@ -22,8 +22,9 @@ echo "installing docker...." && \
 sudo apt-get install docker-ce docker-ce-cli containerd.io -y && \
 
 echo "docker installion is completed...." && \ 
-docker --version && \
-
+echo "------------------------------------------------
+echo " docker version is : $(docker --version)" && \
+echo "------------------------------------------------
 echo "adding current user to docker group...." && \
 sudo usermod -aG docker $USER && \
 
@@ -40,7 +41,8 @@ sudo curl \
     -o /etc/bash_completion.d/docker-compose && \
 
 echo "docker-compose installation is completed...." && \
-
-docker-compose --version && \
+echo "------------------------------------------------
+echo " docker version is : $(docker-compose --version)" && \
+echo "------------------------------------------------
 
 echo "good! file  execution is completed...."
